@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <%= link_to "Campgram", root_path, class: "navbar__brand navbar__mainLogo" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-md-auto align-items-center">
+        <li>
+          
+          <%= link_to "ログイン", new_camper_session_path, class: "btn btn-primary" %>
+
+        </li>
+        <li>
+          <%= link_to "新規登録", new_camper_registration_path, class: "nav-link commonNavIcon profile-icon" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,54 @@
+<div class="py-5 text-center container">
+  <div class="row py-lg-5">
+   <div class="col-lg-6 col-md-8 mx-auto">
+      <h2 class="head-line title_h2 text-center">
+       <%= @camper.camper_name %>
+       <p><%#= image_tag @camper.get_profile_image(50,50) %></p>
+      </h2>
+      <% if camper_signed_in? %>
+       <% unless @camper == current_camper %>
+      　<% if current_camper.following?(@camper) %>
+        <%= link_to "フォロー外す", camper_relationships_path(@camper.id), method: :delete %>
+        <% else %>
+    　   <%= link_to "フォローする", camper_relationships_path(@camper.id), method: :post %>
+        <% end %>
+       <% end %>
+      <% end %>
+       <% if @camper==current_camper %>
+        <%= link_to "編集", edit_camper_path, class: "btn btn-primary" %>
+        <%= link_to '退会', camper_path(current_camper.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に退会しますか？" %>
+       <% end %>
+      
+   </div>
+  </div>
+</div>
+
+<% @camper.posts.each do |post| %>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <%= link_to post_path(post) do %>
+                 <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
+                <% end %>
+                <p class="card-text"><%= post.caption %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <% if camper_signed_in? %>
+                      <% unless @camper == current_camper %>
+                       <div id="like-icon-post-<%= post.id.to_s %>">
+                        <%=  render "public/posts/like_button", { post: post } %>
+                       </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,7 @@
+<% if post.liked_by?(current_camper) %>
+  <%= link_to "いいねを取り消す", post_like_path(post.id), method: :DELETE, remote: true, class: "loved hide-text" %>
+<% else %>
+  <%= link_to  post_like_path(post.id), method: :POST, remote: true, class: "love hide-text"  do %>
+   <%= image_tag "parts2.png", style: "width: 50px; height: 50px;"%>
+  <%end%>
+<% end %>

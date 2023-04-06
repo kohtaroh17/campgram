@@ -1,0 +1,13 @@
+<% post.comments.each do |comment| %>
+  <div class="mb-2">
+    <% if comment.camper == current_camper %>
+      <%= link_to "削除", post_comment_path(post.id,comment.id), method: :delete, remote: true, class: "delete-comment" %>
+    <% end %>
+    <span>
+      <strong>
+        <%= link_to comment.camper.camper_name, camper_path(comment.camper), class: "no-text-decoration black-color" %>
+      </strong>
+    </span>
+    <span><%= comment.comment %></span>
+  </div>
+<% end %>

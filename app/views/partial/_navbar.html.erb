@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <%= link_to "Campgram", root_path, class: "navbar__brand navbar__mainLogo" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-md-auto align-items-center">
+        <% if camper_signed_in? %>
+        <li>
+          <%= form_with url:search_path, local: true, method: :get do |f| %>
+            <%= f.select :range, options_for_select([['Camper'], ['Post']]) %>
+            <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+            <%= f.text_field :word %>
+            <%= f.submit "検索" %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "投稿", new_post_path, class: "btn btn-primary" %>
+        </li>
+        <li>
+          <%= link_to"ユーザー", campers_path, class: "btn btn-primary" %>
+        </li>
+        <li>
+          <%= link_to "マイページ", camper_path(current_camper), class: "nav-link commonNavIcon profile-icon" %>
+        </li>
+        <li>
+          <%= link_to "ログアウト", destroy_camper_session_path, method: :delete, class: 'nav-link text-dark' %>
+        </li>
+        <% else %>
+        <li>
+          <%= link_to 'ログイン',  new_camper_session_path, class: "btn btn-primary" %>
+        </li>
+        <li>
+          <%= link_to '新規登録', new_camper_registration_path, class: "nav-link commonNavIcon profile-icon" %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="col-lg-10 offset-lg-1">
+    <div class="row">
+      <div class="col-lg-5 text-center mb-3">
+        <h2 class="head-line title_h2 text-center">登録情報編集</h2>
+      </div>
+    </div>
+
+    <%= form_with model:@camper, url:camper_path, local: true ,method: :put do |f| %>
+
+      <div class="row field">
+        <%= f.label :"名前", class: "col-lg-2" %>
+        <%= f.label :"(姓)", class: "col-lg-1 text-right" %>
+        <%= f.text_field :last_name, class:"col-xs-2" %>
+        <%= f.label :"(名)", class: "col-lg-1 text-right" %>
+        <%= f.text_field :first_name, class:"col-xs-2" %>
+      </div>
+
+      <div class="row field">
+        <%= f.label :"メールアドレス", class: "col-lg-2" %>
+        <div class="col-lg-1"></div>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-xs-2" %>
+      </div>
+
+      <div class="row field">
+        <%= f.label :"パスワード", class: "col-lg-2" %>
+        <div class="col-lg-1"></div>
+        <%= f.password_field :password, autofocus: true, autocomplete: "password", class:"col-xs-2" %>
+      </div>
+
+      <div class="row field">
+        <%= f.label :"ユーザーネーム", class: "col-lg-3" %>
+        <%= f.text_field :camper_name, class:"col-xs-2" %>
+      </div>
+      
+      <div class="row field">
+       <%= f.label :"プロフィール画像", class: "col-lg-3" %>
+       <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+      </div>
+
+
+      <div>
+        <div class="col-lg-5 text-center">
+          <%= f.submit "編集内容を保存する", class: "btn btn-primary" %>
+        </div>
+      </div>
+
+
+
+    <% end %>
+      <%= link_to "戻る", camper_path, class: "btn btn-primary pull-right" %>
+  </div>
+</div>
