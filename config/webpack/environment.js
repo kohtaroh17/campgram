@@ -11,3 +11,11 @@ environment.plugins.prepend(
     Popper: 'popper.js'
   })
 )
+
+environment.toWebpackConfig().merge({
+    resolve: {
+        alias: {
+            'jquery': 'jquery/src/jquery'
+        }
+    }
+});

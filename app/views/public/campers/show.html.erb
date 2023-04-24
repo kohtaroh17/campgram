@@ -15,6 +15,7 @@
        <% end %>
       <% end %>
        <% if @camper==current_camper %>
+        <%= link_to "いいねした投稿", likes_camper_path(@camper) %>
         <%= link_to "編集", edit_camper_path, class: "btn btn-primary" %>
         <%= link_to '退会', camper_path(current_camper.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に退会しますか？" %>
        <% end %>
@@ -23,11 +24,12 @@
   </div>
 </div>
 
-<% @camper.posts.each do |post| %>
+
   <div class="album py-5 bg-light">
     <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+       　 <% @camper.posts.each do |post| %>
+         　　　 <div class="col">
             <div class="card shadow-sm">
               <div class="card-body">
                 <%= link_to post_path(post) do %>
@@ -48,7 +50,7 @@
               </div>
             </div>
           </div>
+         <% end %>
         </div>
     </div>
   </div>
-<% end %>

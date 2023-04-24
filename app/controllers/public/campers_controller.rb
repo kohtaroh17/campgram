@@ -3,6 +3,8 @@ class Public::CampersController < ApplicationController
    before_action :set_q
    
    before_action :authenticate_camper!, {only: [:edit, :update]}
+   
+   before_action :set_camper, only: [:likes]
   
    def show
     @camper = Camper.find(params[:id])
@@ -33,6 +35,11 @@ class Public::CampersController < ApplicationController
       flash[:notice] = 'ユーザーを削除しました。'
       redirect_to :root #削除に成功すればrootページに戻る
   end
+  
+  def likes
+    likes = Like.where(camper_id: @camper.id).pluck(:post_id)
+    @like_posts = Post.find(likes)
+  end
 
    
    
@@ -41,6 +48,10 @@ class Public::CampersController < ApplicationController
    def set_q
     @q = Camper.ransack(params[:q])
    end
+   
+   def set_camper
+    @camper = Camper.find(params[:id])
+  end
    
    def camper_params
      params.permit(:camper_name, :last_name, :first_name, :email, :password, :profiel_image)

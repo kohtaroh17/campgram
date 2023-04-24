@@ -16,9 +16,11 @@
               title: @post.camper.camper_name do %>
               <strong><%= @post.camper.camper_name %></strong>
             <% end %>
-            <%= link_to post_path(@post), method: :delete, class: "ml-auto mx-0 my-auto" do %>
-              <div class="delete-post-icon">
-              </div>
+            <% if @post.camper == current_camper || current_camper.admin == true %>
+              <%= link_to post_path(@post), method: :delete, class: "ml-auto mx-0 my-auto" do %>
+                <div class="delete-post-icon">
+                </div>
+              <% end %>
             <% end %>
           </div>
           <div class="comment-post-id">
@@ -31,11 +33,9 @@
         </div>
         <div class="row parts">
           <div id="like-text-post-<%= @post.id.to_s %>">
-              <%= render "like_text", { likes: @post.likes } %>
-            </div>
-        </div>
-        <div id="like-text-post-<%= @post.id.to_s %>">
-          <%= render "like_text", { likes: @likes } %>
+            <%= render "like_text", { likes: @post.likes } %>
+          </div>
+          <div class="loved-count"><strong>「いいね！」<%= @post.likes.count %>件</strong></div>
         </div>
         <div class="post-time"><%= time_ago_in_words(@post.created_at).upcase %>前</div>
         <hr>

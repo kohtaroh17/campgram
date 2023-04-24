@@ -11,8 +11,15 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
-import "../stylesheets/application" 
+import "../stylesheets/application";
+// import "jquery-ui-dist";
+// require("jquery-ui/ui/widget.js");
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+require("@fortawesome/fontawesome-free/js/all")
+
+
+

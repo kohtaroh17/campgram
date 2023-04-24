@@ -1,7 +1,9 @@
 <% post.comments.each do |comment| %>
   <div class="mb-2">
-    <% if comment.camper == current_camper %>
-      <%= link_to "削除", post_comment_path(post.id,comment.id), method: :delete, remote: true, class: "delete-comment" %>
+    <% if camper_signed_in? %>
+      <% if comment.camper == current_camper || current_camper.admin == true %>
+        <%= link_to "削除", post_comment_path(post.id,comment.id, format: 1), method: :delete, remote: true, class: "delete-comment" ,data: {"turbolinks"=>false}%>
+      <% end %>
     <% end %>
     <span>
       <strong>
