@@ -32,7 +32,7 @@
           <% end %>
         </div>
         <%= link_to(post_path(post)) do %>
-          <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
+          <%= image_tag post.image, class: "card-img-top" %>
         <% end %>
         <div class="post-caption">
     　     <span><strong><%= post.camper.camper_name %></strong></span>

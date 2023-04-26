@@ -33,7 +33,7 @@
             <div class="card shadow-sm">
               <div class="card-body">
                 <%= link_to post_path(post) do %>
-                 <%= image_tag post.photos.first.image.url(:medium), class: "card-img-top" %>
+                 <%= image_tag post.image, class: "card-img-top" %>
                 <% end %>
                 <p class="card-text"><%= post.caption %></p>
                 <div class="d-flex justify-content-between align-items-center">

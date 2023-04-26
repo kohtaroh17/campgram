@@ -2,11 +2,9 @@ class Post < ApplicationRecord
 
   belongs_to :camper#, foreign_key: [:cumper_name,:caption]
 
-  has_many :photos, dependent: :destroy
+  has_one_attached :image
   has_many :likes, -> { order(created_at: :desc) }, dependent: :destroy
   has_many :comments, -> { order(:created_at => :desc) }, dependent: :destroy
-
-  accepts_nested_attributes_for :photos
 
    def self.looks(searches, words)
     if searches == "perfect_match"

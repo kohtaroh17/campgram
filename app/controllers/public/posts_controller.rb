@@ -5,13 +5,11 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.photos.build
   end
 
   def create
     @post = Post.new(post_params)
-    if @post.photos.present?
-      @post.save
+    if @post.save
       redirect_to root_path
       flash[:notice] = "投稿が保存されました"
     else
@@ -21,7 +19,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.limit(10).includes(:photos, :camper).order('created_at DESC')
+    @posts = Post.includes(:camper).limit(10).order('created_at DESC')
     @comments = Comment.limit(5).order('created_at DESC')
   end
 
@@ -42,7 +40,7 @@ class Public::PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:caption, photos_attributes: [:image]).merge(camper_id: current_camper.id)
+      params.require(:post).permit(:caption, :image).merge(camper_id: current_camper.id)
     end
 
   def set_post
