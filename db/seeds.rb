@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 campers = Camper.create!(
   [
-  {email:'ko@ko',password:'ko0107',camper_name:'taro',admin:'true'},
-  {email:'ya@ya',password:'ko0107',camper_name:'kohsaku'},
+  {email:'kk@kk',password:'ko0107',camper_name:'admin',admin:'true'},
+  {email:'yy@yy',password:'ko0107',camper_name:'kohsaku'},
   ]
   )
