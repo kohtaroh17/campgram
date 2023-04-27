@@ -40,7 +40,7 @@ class Public::PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:caption, :image).merge(camper_id: current_camper.id)
+      params.require(:post).permit(:caption).merge(camper_id: current_camper.id)
     end
 
   def set_post
